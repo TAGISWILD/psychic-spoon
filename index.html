@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Control RTDB from Static Site</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    h1 {
+      text-align: center;
+    }
+    div {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      background-color: #0d0d0d;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background-color: #00ff00;
+      color: #0d0d0d;
+    }
+  </style>
+</head>
+<body>
+  <h1>Control LED from Static Site</h1>
+  <div>
+    <button onclick="setLED(1)">Turn LED On</button>
+    <button onclick="setLED(0)">Turn LED Off</button>
+  </div>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAexyngwNpgsMh5oS3Kyf4SOZoUzGpB-Eo",
+      authDomain: "shreshta-689f2.firebaseapp.com",
+      databaseURL: "https://shreshta-689f2-default-rtdb.asia-southeast1.firebasedatabase.app/",
+      projectId: "shreshta-689f2",
+      storageBucket: "shreshta-689f2.appspot.com",
+      messagingSenderId: "100617729909",
+      appId: "1:100617729909:web:61151b5d56716ec608053c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Function to set LED value in RTDB
+    function setLED(value) {
+      firebase.database().ref("LED").set(value)
+        .then(function() {
+          alert("LED value set to " + value);
+        })
+        .catch(function(error) {
+          console.error("Error setting LED value: ", error);
+        });
+    }
+  </script>
+</body>
+</html>
